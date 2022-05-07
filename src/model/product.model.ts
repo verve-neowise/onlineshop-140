@@ -2,9 +2,10 @@ import Brand from "./brand.model"
 import Category from "./category.model"
 
 type Product = {
-   id: number,
+  id: number,
   name: string,
   image: string,
+  description: string,
   brand: Brand,
   category: Category,
   price: number

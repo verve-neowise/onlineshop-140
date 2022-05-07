@@ -1,6 +1,25 @@
 import Product from "../model/product.model"
 import client from "./client"
 
+async function addProduct(product: Product) {
+  let sql = `
+  INSERT INTO product (name, image, description, brand_id, category_id, price) 
+  VALUES ($1, $2, $3, $4, $5, $6)`
+
+  await client.query(sql, [
+    product.name,
+    product.image,
+    product.description,
+    product.brand.id,
+    product.category.id,
+    product.price
+  ])
+}
+
+async function remove(id: number) {
+  let sql = 'DELETE FROM product WHERE id = $1'
+  await client.query(sql, [id])
+}
 
 async function findAll() {
   let sql = `SELECT product.*, brand.name as brand_name, category.name as category_name
@@ -62,5 +81,6 @@ async function findByCategory(id: number) {
 
 export default {
   findAll,
-  findByCategory
+  findByCategory,
+  addProduct
 }
