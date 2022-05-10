@@ -1,33 +1,19 @@
-import { UploadedFile } from 'express-fileupload'
 import { Router } from 'express'
 import { v4 as uuid } from 'uuid'
-import productService from '../service/product.service'
-import productMapper from '../mappers/product.mapper'
-
-const path = __dirname + '/../../upload/'
+import multer from 'multer'
 
 const router = Router()
 
-router.post('/', (req, res) => {
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, './upload'),
+  filename: (req, file, cb) => cb(null,  uuid() + '.png') 
+})
 
-  if (req.files === undefined) {
-    return res.status(400).json('Files required.')
-  }
+const upload = multer({ storage })
 
-  let img: UploadedFile | UploadedFile[] = req.files.image
+router.post('/', upload.single('poster'), (req, res) => {
 
-  if (Array.isArray(img)) {
-    return res.status(400).json('One file required')
-  }
-
-  let file: UploadedFile = img
-  let fileName = uuid() + '.png'
-
-  file.mv(path + fileName)
-
-  productService.addProduct(productMapper(req.body, fileName))
-    .then(() => res.sendStatus(200))
-    .catch((err) => res.status(500).json({ error: err }))
+  res.sendStatus(200)
 })
 
 export default router
