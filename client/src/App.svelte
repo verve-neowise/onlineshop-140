@@ -2,6 +2,7 @@
 import Brands from "./pages/Brands.svelte";
 import { Router, Route, Link } from 'svelte-navigator'
 import Categories from "./pages/Categories.svelte";
+import Product from "./pages/Product.svelte";
 </script>
 
 <Router>
@@ -21,6 +22,7 @@ import Categories from "./pages/Categories.svelte";
 	<main>
 		<Route path="/brands" component={Brands}/>
 		<Route path="/categories" component={Categories}/>
+		<Route path="/products" component={Product}/>
 	</main>
 
 </Router>

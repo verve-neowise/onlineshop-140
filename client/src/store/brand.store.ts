@@ -4,6 +4,7 @@ import axios from "axios";
 import { writable } from "svelte/store";
 
 const URL = 'http://localhost:9090/brands/'
+
 export type Brand = {
   id: number,
   name: string

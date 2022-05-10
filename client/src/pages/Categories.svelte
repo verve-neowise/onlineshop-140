@@ -1,6 +1,5 @@
 <script lang="ts">
 import CategoryItem from "../components/CategoryItem.svelte";
-
 </script>
 
 <main class="container mx-auto p-6">
@@ -20,7 +19,7 @@ import CategoryItem from "../components/CategoryItem.svelte";
   <input type="checkbox" id="my-modal" class="modal-toggle">
   <div class="modal">
     <div class="modal-box">
-      <h3 class="font-bold text-2xl">Create brand </h3>
+      <h3 class="font-bold text-2xl">Create Category </h3>
       <div class="flex flex-col gap-2 mt-4">
         <input type="text" placeholder="Name" class="input input-bordered w-full">        
       </div>
